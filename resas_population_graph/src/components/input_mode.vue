@@ -6,7 +6,7 @@
       >総人口<input
         type="radio"
         name="mode"
-        value="総人口"
+        value="0"
         v-model="checked"
         @change="mode_changed"
         checked
@@ -16,7 +16,7 @@
       >年少人口<input
         type="radio"
         name="mode"
-        value="年少人口"
+        value="1"
         v-model="checked"
         @change="mode_changed"
       />
@@ -25,7 +25,7 @@
       >生産年齢人口<input
         type="radio"
         name="mode"
-        value="生産年齢人口"
+        value="2"
         v-model="checked"
         @change="mode_changed"
       />
@@ -34,7 +34,7 @@
       >老年人口<input
         type="radio"
         name="mode"
-        value="老年人口"
+        value="3"
         v-model="checked"
         @change="mode_changed"
       />
@@ -49,12 +49,12 @@ export default defineComponent({
   name: "input_mode",
   data() {
     return {
-      checked: "総人口",
+      checked: "0",
     };
   },
   methods: {
     mode_changed() {
-      this.$emit("mode_changed", this.checked);
+      this.$emit("mode_changed", Number(this.checked));
     },
   },
   emits: ["mode_changed"],
