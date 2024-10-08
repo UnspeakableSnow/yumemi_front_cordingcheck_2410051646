@@ -1,6 +1,20 @@
 <!-- 「総人口」「年少人口」「生産年齢人口」「老年人口」切り替え -->
+<script setup lang="ts">
+import { defineEmits, ref } from "vue";
+
+const checked = ref(0);
+
+const emits = defineEmits<{
+  (e: "mode_changed", checked: number): void;
+}>();
+
+function mode_changed() {
+  emits("mode_changed", checked.value);
+}
+</script>
+
 <template>
-  <h1>モード選択</h1>
+  <h2>モードを選択</h2>
   <form class="boxdisplay">
     <label
       >総人口<input
@@ -42,24 +56,27 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "input_mode",
-  data() {
-    return {
-      checked: "0",
-    };
-  },
-  methods: {
-    mode_changed() {
-      this.$emit("mode_changed", Number(this.checked));
-    },
-  },
-  emits: ["mode_changed"],
-});
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+label {
+  border-radius: 5px;
+  margin: 5px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+}
+.boxdisplay {
+  border: double 7px #f0f;
+  margin: 0;
+  padding: 5px;
+}
+@media screen and (max-width: 550px) {
+  .boxdisplay {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 480px) {
+  .boxdisplay {
+    flex-direction: column;
+  }
+}
+</style>

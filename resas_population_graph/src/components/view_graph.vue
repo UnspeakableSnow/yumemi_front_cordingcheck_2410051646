@@ -40,14 +40,29 @@ const chart_data: ChartData<"line"> = {
 };
 const options: ChartOptions<"line"> = {
   responsive: true,
-  // maintainAspectRatio: false,
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
-
 <template>
-  <h1>グラフ</h1>
-  <Line :data="chart_data" :options="options" />
+  <h2>グラフ表示</h2>
+  <div id="phone_graph">
+    <Line :data="chart_data" :options="options" height="300" />
+  </div>
+  <div id="pc_graph">
+    <Line :data="chart_data" :options="options" />
+  </div>
 </template>
+
+<style scoped>
+#phone_graph {
+  display: none;
+}
+@media screen and (max-width: 480px) {
+  #pc_graph {
+    display: none;
+  }
+  #phone_graph {
+    display: block;
+  }
+}
+</style>

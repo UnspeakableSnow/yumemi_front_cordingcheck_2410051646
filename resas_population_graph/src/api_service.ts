@@ -1,26 +1,13 @@
 // API使用ユーティリティ
+import { todouhuken_returndata, population_returndata } from "./types";
+
 const headers = new Headers();
-headers.set("X-API-KEY", "tHo6JXy8vlNO6dBUCtXp3hgcTqN19CQXpot93nCa");
 headers.set("Accept", "application/json");
 headers.set("Content-Type", "application/json;charset=utf-8");
 
-export type todouhuken_resultdata = {
-  prefCode: number;
-  prefName: string;
-};
-export type population_resultdata = {
-  boundaryYear: number;
-  data: { label: string; data: { year: number; value: number }[] }[];
-};
-export type todouhuken_returndata = {
-  message: undefined;
-  result: todouhuken_resultdata[];
-};
-export type population_returndata = {
-  message: undefined;
-  result: population_resultdata;
-};
-
+export function set_API_key(key: string) {
+  headers.set("X-API-KEY", key);
+}
 export async function fetchAPI_todouhuken(url: string) {
   const response = await fetch(url, { headers: headers });
   if (!response.ok) {
