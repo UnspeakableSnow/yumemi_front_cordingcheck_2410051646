@@ -1,26 +1,36 @@
 // API使用ユーティリティ
-import { todouhuken_returndata, population_returndata } from "./types";
+import { todouhuken_return_data, population_return_data } from "./types";
 
 const headers = new Headers();
 headers.set("Accept", "application/json");
 headers.set("Content-Type", "application/json;charset=utf-8");
 
-export function set_API_key(key: string) {
+export function set_api_key(key: string) {
   headers.set("X-API-KEY", key);
 }
-export async function fetchAPI_todouhuken(url: string) {
-  const response = await fetch(url, { headers: headers });
-  if (!response.ok) {
-    throw new Error("API Error!");
+export async function fetch_api_todouhuken() {
+  const response = await fetch(
+    "https://opendata.resas-portal.go.jp/api/v1/prefectures",
+    { headers: headers }
+  );
+  const return_data: todouhuken_return_data = await response.json();
+  // エラーがないならnull
+  if (return_data.message != null) {
+    console.error(return_data.message);
+    throw new Error();
   }
-  const returndata: todouhuken_returndata = await response.json();
-  return returndata.result;
+  return return_data.result;
 }
-export async function fetchAPI_population(url: string) {
-  const response = await fetch(url, { headers: headers });
-  if (!response.ok) {
-    throw new Error("API Error!");
+export async function fetch_api_population(code: number) {
+  const response = await fetch(
+    "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=" +
+      String(code),
+    { headers: headers }
+  );
+  const return_data: population_return_data = await response.json();
+  if (return_data.message != null) {
+    console.error(return_data.message);
+    throw new Error();
   }
-  const returndata: population_returndata = await response.json();
-  return returndata.result;
+  return return_data.result;
 }

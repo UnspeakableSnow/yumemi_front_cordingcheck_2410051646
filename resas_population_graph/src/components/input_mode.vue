@@ -13,9 +13,24 @@ function mode_changed() {
 }
 </script>
 
+<style scoped>
+label {
+  margin: 5px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+}
+@media screen and (max-width: 570px) {
+  .box_display {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>
+
 <template>
   <h2>モードを選択</h2>
-  <form class="boxdisplay">
+  <form class="box_display">
     <label
       >総人口<input
         type="radio"
@@ -55,28 +70,3 @@ function mode_changed() {
     </label>
   </form>
 </template>
-
-<style scoped>
-label {
-  border-radius: 5px;
-  margin: 5px;
-  padding-bottom: 1px;
-  padding-left: 2px;
-}
-.boxdisplay {
-  border: double 7px #f0f;
-  margin: 0;
-  padding: 5px;
-}
-@media screen and (max-width: 550px) {
-  .boxdisplay {
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-@media screen and (max-width: 480px) {
-  .boxdisplay {
-    flex-direction: column;
-  }
-}
-</style>
