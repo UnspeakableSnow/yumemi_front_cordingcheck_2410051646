@@ -19,7 +19,7 @@ input {
   <h2>API-key入力</h2>
   <form class="box_display" @submit.prevent="emits('api_key_get', api_key)">
     <label>APIキーを入力してください：</label>
-    <input type="password" value="API-key" v-model="api_key" />
+    <input type="password" v-model="api_key" />
     <input type="submit" />
   </form>
 </template>
