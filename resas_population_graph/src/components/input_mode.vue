@@ -1,7 +1,36 @@
 <!-- 「総人口」「年少人口」「生産年齢人口」「老年人口」切り替え -->
+<script setup lang="ts">
+import { defineEmits, ref } from "vue";
+
+const checked = ref(0);
+
+const emits = defineEmits<{
+  (e: "mode_changed", checked: number): void;
+}>();
+
+function mode_changed() {
+  emits("mode_changed", checked.value);
+}
+</script>
+
+<style scoped>
+label {
+  margin: 5px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+}
+@media screen and (max-width: 570px) {
+  .box_display {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>
+
 <template>
-  <h1>モード選択</h1>
-  <form class="boxdisplay">
+  <h2>モードを選択</h2>
+  <form class="box_display">
     <label
       >総人口<input
         type="radio"
@@ -41,25 +70,3 @@
     </label>
   </form>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "input_mode",
-  data() {
-    return {
-      checked: "0",
-    };
-  },
-  methods: {
-    mode_changed() {
-      this.$emit("mode_changed", Number(this.checked));
-    },
-  },
-  emits: ["mode_changed"],
-});
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
