@@ -3,7 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
 });
 module.exports = {
-  outputDir: "docs",
-  assetsDir: "../",
+  outputDir: "../docs",
+  assetsDir: "./",
   publicPath: "./",
 };
